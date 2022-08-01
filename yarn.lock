@@ -5740,6 +5740,11 @@ open@^8.0.4, open@^8.3.0:
     is-docker "^2.1.1"
     is-wsl "^2.2.0"
 
+openfoodfac-ts@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/openfoodfac-ts/-/openfoodfac-ts-0.3.1.tgz#4183fdcedab6ac7ef9fb209ac5d470d0c41177e2"
+  integrity sha512-33ltb990PH+X6dwAy0GzZCzrECqw/DEUqWLGh6iAiCxY6ZhHimsu1fTNIQ0iCXiU8oR9US7iR9Ay/4THNyenMw==
+
 ora@3.4.0, ora@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/ora/-/ora-3.4.0.tgz#bf0752491059a3ef3ed4c85097531de9fdbcd318"

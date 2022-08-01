@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { ThemeProvider } from '@rneui/themed';
 import AuthScreen from './screens/Auth/AuthScreen';
-import ContentScreen from './screens/User/ContentScreen';
+import ContentScreen from './screens/Content/ContentScreen';
 import { LogBox } from 'react-native';
 
 const Stack = createNativeStackNavigator();
