@@ -24,7 +24,7 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
 
         try {
             await createUserWithEmailAndPassword(auth, value.email, value.password);
-            navigation.navigate('Login');
+            navigation.navigate('Content');
         } catch (error: any) {
             setValue({
                 ...value,
