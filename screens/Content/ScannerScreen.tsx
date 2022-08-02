@@ -15,7 +15,7 @@ enum Status {
     PermissionsNotGranted
 }
 
-export default function ScannerScreen({ navigation }: { navigation: any }) {
+export default function ScannerScreen() {
     const [status, setStatus] = useState(Status.WaitingForPermissions);
     const [product, setProduct] = useState<Product | null>(null);
 
@@ -62,7 +62,7 @@ export default function ScannerScreen({ navigation }: { navigation: any }) {
     return (
         <View style={{ flex: 1 }}>
             {status === Status.Scanning && <BarCodeScanner onBarCodeScanned={handleBarCodeScanned} style={StyleSheet.absoluteFillObject} />}
-            {status === Status.ProductFound && <ProductDetails data={product} />}
+            {status === Status.ProductFound && product && <ProductDetails data={product} />}
             {status === Status.ProductNotFound && <Text>Product not found</Text>}
             {(status === Status.ProductFound || status === Status.ProductNotFound) && <Button title="Scan new product" onPress={() => setStatus(Status.Scanning)} />}
         </View>

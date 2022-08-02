@@ -42,6 +42,7 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
                     placeholder='Email'
                     value={value.email}
                     onChangeText={(text) => setValue({ ...value, email: text })}
+                    keyboardType="email-address"
                     leftIcon={<Icon
                         name='envelope'
                         size={16}

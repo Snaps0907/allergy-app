@@ -42,6 +42,7 @@ export default function LoginScreen({ navigation }: { navigation: any }) {
                     placeholder='Email'
                     value={value.email}
                     onChangeText={(text) => setValue({ ...value, email: text })}
+                    keyboardType="email-address"
                     leftIcon={<Icon
                         name='envelope'
                         size={16}
@@ -59,7 +60,7 @@ export default function LoginScreen({ navigation }: { navigation: any }) {
                     />}
                 />
 
-                <Button title="Sign up" onPress={signIn} />
+                <Button title="Sign in" onPress={signIn} />
             </View>
 
             {!!value.error && <Text>{value.error}</Text>}
