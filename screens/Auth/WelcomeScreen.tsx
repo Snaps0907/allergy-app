@@ -1,14 +1,16 @@
 import { Button, Text } from "@rneui/base";
+import { observer } from "mobx-react";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { appStore } from "../../AppStore";
 import { useAuthentication } from "../../hooks/useAuthentication";
 
-export default function WelcomeScreen({ navigation }: { navigation: any }) {
-    const user = useAuthentication();
+export default observer(({ navigation }: { navigation: any }) => {
+    useAuthentication();
 
     React.useEffect(() => {
-        if (user) navigation.navigate('Content');
-    }, [user]);
+        if (appStore.user) navigation.navigate('Content');
+    }, [appStore.user]);
 
     return (
         <SafeAreaView>
@@ -16,4 +18,4 @@ export default function WelcomeScreen({ navigation }: { navigation: any }) {
             <Button title="Register" onPress={() => navigation.navigate('Register')} />
         </SafeAreaView>
     );
-}
+});

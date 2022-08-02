@@ -1,10 +1,12 @@
 import { Image, Text } from "@rneui/base";
+import { observer } from "mobx-react";
 import { Product } from "openfoodfac-ts/dist/OpenFoodFactsApi/types";
 import React from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
+import { appStore } from "../AppStore";
 import HighlightIngredients from "./HighlightIngredients";
 
-export default function ProductDetails({ data }: { data: Product }) {
+export default observer(({ data }: { data: Product }) => {
     return (
         <ScrollView style={styles.container}>
             {data.image_url && <View style={styles.imageWrapper}>
@@ -24,7 +26,7 @@ export default function ProductDetails({ data }: { data: Product }) {
 
                 {data.ingredients_text && <View style={{ ...styles.infoLine, ...styles.twoLines }}>
                     <Text style={styles.bold}>Ingredients: </Text>
-                    <HighlightIngredients ingredients={data.ingredients_text} highlightWords={['glucose syrup', 'milk']} />
+                    <HighlightIngredients ingredients={data.ingredients_text} highlightWords={appStore.allergies} />
                 </View>}
 
                 {!data.ingredients_text && <View style={{ ...styles.infoLine, ...styles.twoLines }}>
@@ -34,7 +36,7 @@ export default function ProductDetails({ data }: { data: Product }) {
             </View>
         </ScrollView>
     );
-}
+})
 
 const styles = StyleSheet.create({
     container: {
