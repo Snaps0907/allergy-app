@@ -1,10 +1,12 @@
-import { Text } from "@rneui/base";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { observer } from "mobx-react";
+import React from "react";
+import { ScrollView } from "react-native";
+import AllergiesManagement from "../../components/AllergiesManagement";
 
-export default function ProfileScreen() {
+export default observer(() => {
     return (
-        <SafeAreaView>
-            <Text>Profile</Text>
-        </SafeAreaView>
+        <ScrollView>
+            <AllergiesManagement />
+        </ScrollView>
     );
-}
+});
