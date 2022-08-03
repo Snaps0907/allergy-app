@@ -1,5 +1,4 @@
 import { Icon, Input, Text } from "@rneui/base";
-import { getAuth, updateProfile } from "firebase/auth";
 import { observer } from "mobx-react";
 import React, { useState } from "react";
 import { View } from "react-native";
@@ -18,9 +17,7 @@ export default observer(() => {
     const handleOnPress = async () => {
         if (status === Status.Edit) {
             setStatus(Status.Saving);
-            const auth = getAuth();
-            await updateProfile(auth.currentUser!, { displayName: value });
-            appStore.updateUserName(value);
+            await appStore.updateUserName(value);
             setStatus(Status.Display);
         } else if (status === Status.Display) {
             setStatus(Status.Edit);

@@ -2,20 +2,14 @@ import { Slider, Text } from "@rneui/base";
 import { observer } from "mobx-react";
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { addUserWellbeing } from "../api/queries";
-import { appStore, Wellbeing } from "../AppStore";
+import { appStore } from "../AppStore";
 
 export default observer(() => {
     const [disabled, setDisabled] = useState(false);
 
     const setWellbeing = async (value: number) => {
-        const wellbeing: Wellbeing = {
-            rating: value,
-            date: new Date().toISOString().split("T")[0]
-        }
-
         setDisabled(true);
-        await addUserWellbeing(appStore.user!.uid, wellbeing);
+        await appStore.setTodayWellbeing(value);
         setDisabled(false);
     }
 

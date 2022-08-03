@@ -1,6 +1,6 @@
-import { User } from "firebase/auth";
-import { Timestamp } from "firebase/firestore";
-import { makeAutoObservable } from "mobx";
+import { updateProfile, User } from "firebase/auth";
+import { makeAutoObservable, runInAction } from "mobx";
+import { addUserWellbeing } from "./api/queries";
 
 export interface Wellbeing {
     date: string;
@@ -36,8 +36,30 @@ export class AppStore {
         this.wellbeing = wellbeing;
     }
 
-    public updateUserName = (userName: string) => {
+    public updateUserName = async (userName: string) => {
+        await updateProfile(this.user!, { displayName: userName });
         this.user = { ...this.user!, displayName: userName };
+    }
+
+    public setTodayWellbeing = async (value: number) => {
+        const todayDate = new Date().toISOString().split("T")[0];
+
+        const todayWellbeing: Wellbeing = {
+            rating: value,
+            date: todayDate
+        }
+
+        await addUserWellbeing(appStore.user!.uid, todayWellbeing);
+
+        const existingWellbeingIndex = this.wellbeing.findIndex(x => x.date === todayDate);
+
+        runInAction(() => {
+            if (existingWellbeingIndex) {
+                this.wellbeing = [...this.wellbeing].splice(existingWellbeingIndex, 1, todayWellbeing);
+            } else {
+                this.wellbeing = [...this.wellbeing, todayWellbeing];
+            }
+        })
     }
 }
 
