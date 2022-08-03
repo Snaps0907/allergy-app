@@ -2,7 +2,7 @@ import { Icon, Input, Text } from "@rneui/base";
 import { getAuth, updateProfile } from "firebase/auth";
 import { observer } from "mobx-react";
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { appStore } from "../AppStore";
 
 enum Status {
@@ -20,6 +20,7 @@ export default observer(() => {
             setStatus(Status.Saving);
             const auth = getAuth();
             await updateProfile(auth.currentUser!, { displayName: value });
+            appStore.updateUserName(value);
             setStatus(Status.Display);
         } else if (status === Status.Display) {
             setStatus(Status.Edit);

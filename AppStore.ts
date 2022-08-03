@@ -35,6 +35,10 @@ export class AppStore {
     public setWellbeing = (wellbeing: Wellbeing[]) => {
         this.wellbeing = wellbeing;
     }
+
+    public updateUserName = (userName: string) => {
+        this.user = { ...this.user!, displayName: userName };
+    }
 }
 
 export const appStore = new AppStore();

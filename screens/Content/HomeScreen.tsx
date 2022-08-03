@@ -1,10 +1,15 @@
-import { Button } from "@rneui/base";
+import { Button, Text } from "@rneui/base";
+import { observer } from "mobx-react";
 import { ScrollView } from "react-native";
+import { appStore } from "../../AppStore";
 import WellbeingInput from "../../components/WellbeingInput";
 
-export default function HomeScreen({ navigation }: { navigation: any }) {
+export default observer(({ navigation }: { navigation: any }) => {
+    const userName = appStore.user?.displayName ? ` ${appStore.user?.displayName}` : '';
+
     return (
         <ScrollView>
+            <Text>Hi{userName}!</Text>
             <WellbeingInput />
             <Button title="Calendar" onPress={() => navigation.navigate('Calendar')} />
             <Button title="Search products" onPress={() => navigation.navigate('Search')} />
@@ -13,4 +18,4 @@ export default function HomeScreen({ navigation }: { navigation: any }) {
             <Button title="Scanner" onPress={() => navigation.navigate('Scanner')} />
         </ScrollView>
     );
-}
+});

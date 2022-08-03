@@ -4,7 +4,7 @@ import { observer } from "mobx-react";
 import React from "react";
 import { ScrollView } from "react-native";
 import AllergiesManagement from "../../components/AllergiesManagement";
-import UserName from "../../components/UserName";
+import EditUserName from "../../components/EditUserName";
 
 export default observer(({ navigation }: { navigation: any }) => {
     const logout = () => {
@@ -15,7 +15,7 @@ export default observer(({ navigation }: { navigation: any }) => {
 
     return (
         <ScrollView>
-            <UserName />
+            <EditUserName />
             <AllergiesManagement />
             <Button onPress={logout} title="logout" />
         </ScrollView>

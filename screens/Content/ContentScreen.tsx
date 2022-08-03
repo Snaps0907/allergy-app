@@ -1,5 +1,4 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import HomeScreen from './HomeScreen';
 import CalendarScreen from './CalendarScreen';
@@ -9,18 +8,13 @@ import ScannerScreen from './ScannerScreen';
 import { useAuthentication } from '../../hooks/useAuthentication';
 import React from 'react';
 import { observer } from 'mobx-react';
-import { appStore } from '../../AppStore';
 import ProductInfo from './ProductInfo';
-import { Icon, Text } from '@rneui/base';
+import { Icon } from '@rneui/base';
 
 const Tab = createBottomTabNavigator();
 
 export default observer(({ navigation }: { navigation: any }) => {
     useAuthentication();
-
-    React.useEffect(() => {
-        if (!appStore.user) navigation.navigate('Welcome');
-    }, [appStore.user]);
 
     return (
         <>
