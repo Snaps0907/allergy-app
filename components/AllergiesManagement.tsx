@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 import { addUserAllergy, removeUserAllergy } from "../api/queries";
 import { appStore } from "../AppStore";
+import { LinearGradient } from 'expo-linear-gradient';
+import { autoAction } from "mobx/dist/internal";
 
 export default observer(() => {
     const [value, setValue] = useState("");
@@ -34,8 +36,8 @@ export default observer(() => {
             <Input value={value} onChangeText={value => setValue(value)} />
             <Button title="add" onPress={addAllergy} />
 
-            <View>
-                {appStore.allergies.map(x => <Badge key={x} value={`${x} X`} badgeStyle={styles.badge} textStyle={styles.badgeText} onPress={() => removeAllergy(x)} />)}
+            <View style={{flexDirection:"row",margin:10}}>
+                {appStore.allergies.map(x =><LinearGradient colors={['#27AE60', '#85D454']} style={{borderRadius:10,margin:2}}><Badge key={x} value={`${x} X`} badgeStyle={styles.badge} textStyle={styles.badgeText} onPress={() => removeAllergy(x)} /></LinearGradient>)}
             </View>
         </View>
     );
@@ -46,10 +48,10 @@ const styles = StyleSheet.create({
         paddingVertical: 4,
         paddingHorizontal: 8,
         height: "auto",
-        borderRadius: 100
+        backgroundColor:"transparent"
     },
     badgeText: {
-        fontSize: 16,
-        fontWeight: "bold"
+        fontSize: 18,
+        fontWeight: "normal"
     }
 });
