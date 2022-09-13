@@ -3,7 +3,11 @@ import { Calendar } from "react-native-calendars";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { appStore } from "../../AppStore";
 
-export default observer(() => {
+
+
+
+
+export default observer(({ navigation }: { navigation: any }) => {
     const markedDates: { [key: string]: any } = {};
 
     const resolveColor = (value: number) => {
@@ -21,9 +25,11 @@ export default observer(() => {
         markedDates[x.date] = { selected: true, selectedColor: resolveColor(x.rating) };
     });
 
+
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{backgroundColor:"white"}}>
             <Calendar markedDates={markedDates} />
         </SafeAreaView>
+       
     );
 });

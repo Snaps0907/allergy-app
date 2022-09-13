@@ -60,7 +60,7 @@ export default function ScannerScreen() {
     }
 
     return (
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1,margin:50 }}>
             {status === Status.Scanning && <BarCodeScanner onBarCodeScanned={handleBarCodeScanned} style={StyleSheet.absoluteFillObject} />}
             {status === Status.ProductFound && product && <ProductDetails data={product} />}
             {status === Status.ProductNotFound && <Text>Product not found</Text>}

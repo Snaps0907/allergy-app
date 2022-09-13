@@ -64,6 +64,7 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
             </View>
 
             {!!value.error && <Text>{value.error}</Text>}
+            <Button  style={{marginTop:10, }} title="Main screen" onPress={() => navigation.navigate('Welcome')} />
         </SafeAreaView>
     );
 }
