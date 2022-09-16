@@ -16,23 +16,19 @@ export default observer(({ data }: { data: Product }) => {
 
             <View style={styles.detailsWrapper}>
                 {data.product_name ? <View style={styles.infoLine}>
-                    <Text style={styles.bold}>Product name: </Text>
-                    <Text>{data.product_name}</Text>
+                    <Text><Text style={styles.bold}>Product name: </Text>{data.product_name}</Text>
                 </View> : null}
 
                 {data.brands ? <View style={styles.infoLine}>
-                    <Text style={styles.bold}>Brand: </Text>
-                    <Text>{data.brands}</Text>
+                    <Text><Text style={styles.bold}>Brand: </Text>{data.brands}</Text>
                 </View> : null}
 
                 {data.ingredients_text ? <View style={{ ...styles.infoLine, ...styles.twoLines }}>
-                    <Text style={styles.bold}>Ingredients: </Text>
-                    <HighlightIngredients ingredients={data.ingredients_text.replace(/_/gi, "")} highlightWords={appStore.allergies} />
+                    <Text style={styles.bold}>Ingredients: <HighlightIngredients ingredients={data.ingredients_text.replace(/_/gi, "")} highlightWords={appStore.allergies} /></Text>   
                 </View> : null}
 
                 {!data.ingredients_text ? <View style={{ ...styles.infoLine, ...styles.twoLines }}>
-                    <Text style={styles.bold}>Ingredients: </Text>
-                    <Text>Missing ingredients data</Text>
+                    <Text style={styles.bold}>Ingredients: <Text>Missing ingredients data</Text></Text>   
                 </View> : null}
             </View>
         </View>
@@ -52,11 +48,12 @@ const styles = StyleSheet.create({
         aspectRatio: 1
     },
     detailsWrapper: {
-        paddingBottom: 24
+        paddingBottom: 24,
     },
     infoLine: {
         flexDirection: "row",
-        marginVertical: 2
+        marginVertical: 2,
+        flexWrap:"nowrap"
     },
     twoLines: {
         flexDirection: "column"

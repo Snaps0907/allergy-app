@@ -35,9 +35,9 @@ export default observer(() => {
         }
     }
 
-    return <View>
-        <Text>Name: </Text>
-        <Input disabled={status !== Status.Edit} value={value} placeholder="set your name" onChangeText={setValue} />
+    return <View style={{flexDirection:"row",width:100, alignItems:"center",marginHorizontal:100}}>
+        <Text style={{fontSize:22}}>Name: </Text>
+        <Input disabled={status !== Status.Edit} value={value} placeholder="set your name" onChangeText={setValue} inputContainerStyle={{borderBottomWidth:0,top:12}}/>
         <Icon name={getIconName()} onPress={handleOnPress} />
     </View>
 });

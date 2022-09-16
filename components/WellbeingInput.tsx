@@ -13,17 +13,18 @@ export default observer(() => {
         setDisabled(false);
     }
 
-    return <View>
-        <Text>How do you feel today?</Text>
-
-        <View>
+    return <View style={{marginVertical:20}}>
+        <View style={{alignItems:"center"}}>
+        <Text style={styles.labelsWrapper.text}>How do you feel today?</Text>
+        </View>
+        <View style={{marginHorizontal:20}}>
             <View style={styles.labelsWrapper}>
-                <Text>bad</Text>
-                <Text>so-so</Text>
-                <Text>good</Text>
+                <Text style={[styles.labelsWrapper.text,{color:"#C70039"}]}>bad</Text>
+                <Text style={[styles.labelsWrapper.text,{color:"#EBD64E"}]}>so-so</Text>
+                <Text style={[styles.labelsWrapper.text,{color:"#3C9C2A"}]}>good</Text>
             </View>
             <View>
-                <Slider value={appStore.todayWellbeing} minimumValue={1} maximumValue={3} onSlidingComplete={setWellbeing} step={1} disabled={disabled} />
+                <Slider value={appStore.todayWellbeing} minimumValue={1} maximumValue={3} onSlidingComplete={setWellbeing} step={1} disabled={disabled} thumbStyle={styles.thumb} trackStyle={styles.track}/>
             </View>
         </View>
     </View>
@@ -32,6 +33,24 @@ export default observer(() => {
 const styles = StyleSheet.create({
     labelsWrapper: {
         flexDirection: 'row',
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+
+        text:{
+            fontSize:18,
+            fontWeight:"bold"
+        }
+    },
+    track:{
+        justifyContent:"center",
+        height:30,
+        borderRadius:30,
+        borderWidth:0,
+        borderColor:"gray",
+        backgroundColor:"#fff"
+    },
+    thumb:{
+        height:28,
+        width:28,
+        backgroundColor:"#fff"
     }
 });

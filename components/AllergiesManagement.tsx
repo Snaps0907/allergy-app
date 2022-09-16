@@ -1,4 +1,4 @@
-import { Input, Badge } from "@rneui/base";
+import { Input, Badge,Icon } from "@rneui/base";
 import { observer } from "mobx-react";
 import React, { useState } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
@@ -31,13 +31,17 @@ export default observer(() => {
     }
 
     return (
-        <View>
-            <Text>Allergies list</Text>
-            <Input value={value} onChangeText={value => setValue(value)} />
-            <Button title="add" onPress={addAllergy} />
+        <View style={{borderBottomWidth:1,borderBottomColor:"lightgray",marginBottom:20}}>
+            <View style={{flexDirection:"row",width:200, alignItems:"center",marginHorizontal:30}}>
+            <Text style={{fontSize:16}}>Allergies list:</Text>
+            <Input inputContainerStyle={{borderWidth:0,top:12}} style={{fontSize:16}} value={value} onChangeText={value => setValue(value)} placeholder="add your allery here..."/>
+            {/* <Button title="add" onPress={addAllergy} /> */}
+            <Icon name="add" onPress={addAllergy}/>
+            </View>
+            
 
-            <View style={{flexDirection:"row",margin:10}}>
-                {appStore.allergies.map(x =><LinearGradient colors={['#27AE60', '#85D454']} style={{borderRadius:10,margin:2}}><Badge key={x} value={`${x} X`} badgeStyle={styles.badge} textStyle={styles.badgeText} onPress={() => removeAllergy(x)} /></LinearGradient>)}
+            <View style={{flexDirection:"row",margin:10,flexWrap:"wrap"}}>
+                {appStore.allergies.map(x =><LinearGradient key={x} colors={['#27AE60', '#85D454']} style={{borderRadius:10,margin:2,width:"auto"}}><Badge key={x} value={`${x} X`} badgeStyle={styles.badge} textStyle={styles.badgeText} onPress={() => removeAllergy(x)} /></LinearGradient>)}
             </View>
         </View>
     );
