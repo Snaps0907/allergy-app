@@ -33,9 +33,9 @@
             "Alternaria": "none"
         },
         "March": {
-            "Leszczyna": "high",
+            "Leszczyna": "low",
             "Olsza": "high",
-            "Brzoza": "none",
+            "Brzoza": "low",
             "Topola": "low",
             "Dąb": "none",
             "Trawy": "none",
@@ -49,12 +49,12 @@
             "Alternaria": "low"
         },
         "April": {
-            "Leszczyna": "high",
-            "Olsza": "high",
-            "Brzoza": "none",
+            "Leszczyna": "none",
+            "Olsza": "none",
+            "Brzoza": "high",
             "Topola": "low",
-            "Dąb": "none",
-            "Trawy": "none",
+            "Dąb": "high",
+            "Trawy": "low",
             "Babka": "none",
             "Szczaw": "none",
             "Pokrzywa": "none",
@@ -65,20 +65,20 @@
             "Alternaria": "low"
         },
         "May": {
-            "Leszczyna": "high",
-            "Olsza": "high",
-            "Brzoza": "none",
-            "Topola": "low",
-            "Dąb": "none",
-            "Trawy": "none",
-            "Babka": "none",
-            "Szczaw": "none",
-            "Pokrzywa": "none",
+            "Leszczyna": "none",
+            "Olsza": "none",
+            "Brzoza": "low",
+            "Topola": "none",
+            "Dąb": "low",
+            "Trawy": "low",
+            "Babka": "low",
+            "Szczaw": "low",
+            "Pokrzywa": "low",
             "Komosa": "none",
             "Bylica": "none",
             "Ambrozja": "none",
-            "Cladosporium": "low",
-            "Alternaria": "low"
+            "Cladosporium": "high",
+            "Alternaria": "high"
         },
         "June": {
             "Leszczyna": "high",
