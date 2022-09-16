@@ -5,6 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import ProductDetails from "../../components/ProductDetails";
 import { OpenFoodFactsApi } from 'openfoodfac-ts';
 import { Product } from "openfoodfac-ts/dist/OpenFoodFactsApi/types";
+import { LinearGradient } from 'expo-linear-gradient';
 
 enum Status {
     WaitingForPermissions,
@@ -60,11 +61,20 @@ export default function ScannerScreen() {
     }
 
     return (
-        <View style={{ flex: 1,margin:50 }}>
-            {status === Status.Scanning && <BarCodeScanner onBarCodeScanned={handleBarCodeScanned} style={StyleSheet.absoluteFillObject} />}
+        <View style={{ flex: 1 }}>
+            {status === Status.Scanning && <View style={{ flex: 1,marginTop:130 }}><Text style={{textAlign:"center",fontSize:22}} >Scan the barcode here</Text><BarCodeScanner onBarCodeScanned={handleBarCodeScanned} style={[StyleSheet.absoluteFillObject,styles.scanner]} /></View>}
             {status === Status.ProductFound && product && <ProductDetails data={product} />}
-            {status === Status.ProductNotFound && <Text>Product not found</Text>}
-            {(status === Status.ProductFound || status === Status.ProductNotFound) && <Button title="Scan new product" onPress={() => setStatus(Status.Scanning)} />}
+            {status === Status.ProductNotFound && <Text style={{textAlign:"center",fontSize:22, marginVertical:100}}>Product not found</Text>}
+            {(status === Status.ProductFound || status === Status.ProductNotFound) && <LinearGradient colors={['#27AE60', '#85D454']} style={{alignSelf:"center",borderRadius:10, width:180}}><Button color="transparent" title="Scan new product" onPress={() => setStatus(Status.Scanning)} /></LinearGradient>}
         </View>
     );
 }
+const styles = StyleSheet.create({
+    scanner: {
+        flex: 1,
+         marginTop:40,
+        marginBottom:170,
+        marginLeft:50,
+        marginRight:50,
+    }
+})

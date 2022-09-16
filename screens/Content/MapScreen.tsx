@@ -29,15 +29,15 @@ export default function MapScreen() {
     const selectedData = data[region][getCurrentMonth()];
 
     return (
-        <ScrollView>
+        <ScrollView style={{backgroundColor:"#fff"}}>
             <Text>Select region:</Text>
             <SelectDropdown data={regions} onSelect={setRegion} buttonTextAfterSelection={selectedItem => selectedItem} rowTextForSelection={item => item} defaultValue={region} />
-            <Image source={require("../../assets/map.png")} style={{ width: 300, height: 300, resizeMode: "contain" }} />
-            <Text>Tendencje stężenia alergenów</Text>
-            <View style={{flexDirection:"row",alignItems:"center",marginVertical: 4, justifyContent:"space-around"}}>
-            <View style={{flexDirection:"row",alignItems:"center"}}><Icon name="emoji-happy" type="entypo" color="green"/><Text>None</Text></View>
-            <View style={{flexDirection:"row",alignItems:"center"}}><Icon name="emoji-neutral" type="entypo" color="orange"/><Text>Low</Text></View>
-            <View style={{flexDirection:"row",alignItems:"center"}}><Icon name="emoji-sad" type="entypo" color="red"/><Text>High</Text></View>
+            <View style={{justifyContent:"center",alignItems:"center",paddingVertical:20}}><Image source={require("../../assets/map.png")} style={{ width: 300, height: 300, resizeMode: "contain" }} /></View>
+            <Text style={{marginHorizontal:15,textAlign:"center"}}>Tendencje stężenia alergenów</Text>
+            <View style={{flexDirection:"row",alignItems:"center",marginVertical: 4,paddingVertical: 10, justifyContent:"space-around", borderBottomWidth:1, borderBottomColor:"lightgray"}}>
+            <View style={{flexDirection:"row",alignItems:"center"}}><Icon name="emoji-happy" type="entypo" color="green"/><Text style={{marginLeft:10}}>None</Text></View>
+            <View style={{flexDirection:"row",alignItems:"center"}}><Icon name="emoji-neutral" type="entypo" color="orange"/><Text style={{marginLeft:10}}>Low</Text></View>
+            <View style={{flexDirection:"row",alignItems:"center"}}><Icon name="emoji-sad" type="entypo" color="red"/><Text style={{marginLeft:10}}>High</Text></View>
             </View>
             {Object.entries(selectedData).map(([key, value]) => <View key={key} style={styles.line}>
                 {getIcon(value as string)}
@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         // justifyContent: "space-between",
         width: "50%",
-        marginVertical: 4
+        marginVertical: 10,
+        marginHorizontal:15,
     }
 })

@@ -2,8 +2,9 @@ import { Button, Input, Text } from "@rneui/base";
 import OpenFoodFactsApi from "openfoodfac-ts";
 import { Product } from "openfoodfac-ts/dist/OpenFoodFactsApi/types";
 import { useState } from "react";
-import { ScrollView } from "react-native";
+import { ScrollView, View } from "react-native";
 import ProductDetails from "../../components/ProductDetails";
+import { LinearGradient } from 'expo-linear-gradient';
 
 enum Status {
     Init,
@@ -37,11 +38,12 @@ export default function ProductInfo() {
 
     const firstProducts = products.sort((a, b) => (b.completeness || 0) - (a.completeness || 0)).slice(0, 3);
 
-    return <ScrollView>
-        <Input value={value} onChangeText={setValue} />
-        <Button onPress={searchProduct} title="search" />
-
-        {status === Status.Searching && <Text>Loading...</Text>}
+    return <ScrollView style={{backgroundColor:"#fff"}}>
+        <View style={{position:"relative", zIndex:2}}>
+        <Input inputContainerStyle={{borderBottomWidth:0}} value={value} style={{borderWidth:2,padding:5,marginTop:20, borderColor:"gray", borderRadius:10}} onChangeText={setValue} placeholder="Type product name here..."></Input>
+        <LinearGradient colors={['#27AE60', '#85D454']} style={{alignSelf:"center",borderRadius:10, width:180}}><Button color="transparent" onPress={searchProduct} title="search" /></LinearGradient>
+        </View>
+        {status === Status.Searching && <Text style={{justifyContent:"center",alignSelf:"center", marginTop:40}}>Loading...</Text>}
         {status === Status.ProductsNotFound && <Text>Products not found</Text>}
         {status === Status.ProductsFound && firstProducts.map((x, i) => <ProductDetails key={`x._id-${i}`} data={x} />)}
     </ScrollView>

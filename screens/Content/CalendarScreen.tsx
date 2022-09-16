@@ -13,11 +13,11 @@ export default observer(({ navigation }: { navigation: any }) => {
     const resolveColor = (value: number) => {
         switch (value) {
             case 1:
-                return "red";
+                return "#C70039";
             case 2:
-                return "yellow";
+                return "#EBD64E";
             case 3:
-                return "green";
+                return "#3C9C2A";
         }
     }
 
@@ -27,7 +27,7 @@ export default observer(({ navigation }: { navigation: any }) => {
 
 
     return (
-        <SafeAreaView style={{backgroundColor:"white"}}>
+        <SafeAreaView style={{backgroundColor:"#fff"}}>
             <Calendar markedDates={markedDates} />
         </SafeAreaView>
        

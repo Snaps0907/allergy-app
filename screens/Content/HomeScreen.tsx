@@ -10,8 +10,8 @@ export default observer(({ navigation }: { navigation: any }) => {
     const userName = appStore.user?.displayName ? ` ${appStore.user?.displayName}` : '';
 
     return (
-        <ScrollView style={{backgroundColor:"white"}}>
-            <Text>Hi{userName}!</Text>
+        <ScrollView style={{backgroundColor:"#fff"}}>
+            <Text style={{fontSize:22}}>Hi{userName}!</Text>
             <WellbeingInput />
             <Button color="transparent" style={styles.buttons} onPress={() => navigation.navigate('Calendar')}><View style={[styles.btnView,styles.shadowProp]}><LinearGradient colors={['#27AE60', '#85D454']} style={{borderRadius:10, width:90}}><Icon name="calendar" type="material-community" size={50} color="white" style={{padding:15,margin:0}}/></LinearGradient><Text style={{marginLeft:20,fontSize:24}}>Calendar</Text></View></Button>
             <Button color="transparent" style={styles.buttons} onPress={() => navigation.navigate('Search')}><View style={[styles.btnView,styles.shadowProp]}><LinearGradient colors={['#27AE60', '#85D454']} style={{borderRadius:10, width:90}}><Icon name="search" size={50} color="white" style={{padding:15,margin:0}}/></LinearGradient><Text style={{marginLeft:20,fontSize:24}}>Search</Text></View></Button>
