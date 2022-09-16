@@ -4,6 +4,7 @@ import React from "react";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function LoginScreen({ navigation }: { navigation: any }) {
     const [value, setValue] = React.useState({
@@ -35,7 +36,7 @@ export default function LoginScreen({ navigation }: { navigation: any }) {
 
     return (
         <SafeAreaView>
-            <Text>Register</Text>
+            <Text style={{textAlign:"center",fontSize:24,marginTop:20}}>Login</Text>
 
             <View>
                 <Input
@@ -59,11 +60,13 @@ export default function LoginScreen({ navigation }: { navigation: any }) {
                         size={16}
                     />}
                 />
-
-                <Button title="Sign in" onPress={signIn} />
+                {!!value.error && <Text style={{marginBottom:20,marginHorizontal:10,color:"#C70039"}}>{value.error}</Text>}
+                <LinearGradient colors={['#27AE60', '#85D454']} style={{alignSelf:"center",borderRadius:10, width:180}}><Button color="transparent" title="Sign in" onPress={signIn} /></LinearGradient>
+                <LinearGradient colors={['#27AE60', '#85D454']} style={{alignSelf:"center",borderRadius:10, width:180, marginTop:20}}><Button  color="transparent" title="Main screen" onPress={() => navigation.navigate('Welcome')} /></LinearGradient>
             </View>
 
-            {!!value.error && <Text>{value.error}</Text>}
+            
+            
         </SafeAreaView>
     );
 }

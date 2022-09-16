@@ -4,6 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function RegisterScreen({ navigation }: { navigation: any }) {
     const [value, setValue] = React.useState({
@@ -35,7 +36,7 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
 
     return (
         <SafeAreaView>
-            <Text>Register</Text>
+            <Text style={{textAlign:"center",fontSize:24,marginTop:20}}>Register</Text>
 
             <View >
                 <Input
@@ -59,12 +60,12 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
                         size={16}
                     />}
                 />
-
-                <Button title="Sign up" onPress={signUp} />
+                {!!value.error && <Text style={{marginBottom:20,marginHorizontal:10,color:"#C70039"}}>{value.error}</Text>}
+                <LinearGradient colors={['#27AE60', '#85D454']} style={{alignSelf:"center",borderRadius:10, width:180}}><Button color="transparent" title="Sign up" onPress={signUp} /></LinearGradient>
+                <LinearGradient colors={['#27AE60', '#85D454']} style={{alignSelf:"center",borderRadius:10, width:180, marginTop:20}}><Button  color="transparent" title="Main screen" onPress={() => navigation.navigate('Welcome')} /></LinearGradient>
             </View>
 
-            {!!value.error && <Text>{value.error}</Text>}
-            <Button  style={{marginTop:10, }} title="Main screen" onPress={() => navigation.navigate('Welcome')} />
+            
         </SafeAreaView>
     );
 }

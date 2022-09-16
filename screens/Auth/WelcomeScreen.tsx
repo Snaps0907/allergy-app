@@ -15,15 +15,15 @@ export default observer(({ navigation }: { navigation: any }) => {
     }, [appStore.user]);
 
     return (
-        <LinearGradient colors={['#27AE60', '#85D454']}>
+        
             
         <SafeAreaView style={styles.screen}>
         <Image source={require("../../assets/AS-logo.png")} style={styles.logo}/>
-        <Text>Allergy Support</Text>
-            <Button color="#00000000" style={styles.buttons} title="Login" onPress={() => navigation.navigate('Login')} />
-            <Button color="#00000000" style={styles.buttons} title="Register" onPress={() => navigation.navigate('Register')} />
+        <Text style={{fontSize:32,color:"#939393",fontWeight:"bold"}}>Allergy Support</Text>
+        <LinearGradient colors={['#27AE60', '#85D454']} style={{alignSelf:"center",borderRadius:10, width:180, marginTop:20}}><Button color="#00000000" title="Login" onPress={() => navigation.navigate('Login')} /></LinearGradient>
+        <LinearGradient colors={['#27AE60', '#85D454']} style={{alignSelf:"center",borderRadius:10, width:180, marginTop:20}}><Button color="#00000000" title="Register" onPress={() => navigation.navigate('Register')} /></LinearGradient>
         </SafeAreaView>
-        </LinearGradient>
+
     );
 });
 
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
          resizeMode: "contain" 
     },
     screen:{
-        //  backgroundColor:"green",
+          backgroundColor:"#fff",
          height:"100%",
          display:"flex",
          justifyContent:"center",
