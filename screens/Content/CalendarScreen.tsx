@@ -1,9 +1,27 @@
+import { useIsFocused } from "@react-navigation/native";
 import { observer } from "mobx-react";
+import { useEffect } from "react";
 import { Calendar } from "react-native-calendars";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { appStore } from "../../AppStore";
 
 export default observer(() => {
+    const isFocused = useIsFocused();
+
+    useEffect(() => {
+        const updateWellbeing = async () => {
+            try {
+                await appStore.refreshWellbeing();
+            } catch (err) {
+                console.error(err)
+            }
+        }
+
+        if (isFocused) {
+            updateWellbeing();
+        }
+    }, [isFocused]);
+
     const resolveColor = (value: number) => {
         switch (value) {
             case 1:

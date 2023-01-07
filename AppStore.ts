@@ -1,6 +1,6 @@
 import { updateProfile, User } from "firebase/auth";
 import { makeAutoObservable, runInAction } from "mobx";
-import { addContactRequest, addUserWellbeing } from "./api/queries";
+import { addContactRequest, addUserWellbeing, getUserWellbeing } from "./api/queries";
 
 export interface Wellbeing {
     date: string;
@@ -34,6 +34,11 @@ export class AppStore {
 
     public setWellbeing = (wellbeing: Wellbeing[]) => {
         this.wellbeing = wellbeing;
+    }
+
+    public refreshWellbeing = async () => {
+        const wellbeing = await getUserWellbeing(this.user!.uid);
+        this.setWellbeing(wellbeing);
     }
 
     public updateUserName = async (userName: string) => {
