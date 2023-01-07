@@ -52,10 +52,18 @@ export const addUserWellbeing = async (userId: string, value: Wellbeing) => {
     await addDoc(getWellbeingCollection(), { userId, ...value });
 }
 
+export const addContactRequest = async (userId: string, email: string | null, text: string) => {
+    await addDoc(getContactRequestsCollection(), { userId, email, text });
+}
+
 const getAllergiesCollection = () => {
     return collection(firestore, "user-allergies");
 }
 
 const getWellbeingCollection = () => {
     return collection(firestore, "user-wellbeing");
+}
+
+const getContactRequestsCollection = () => {
+    return collection(firestore, "contact-requests");
 }

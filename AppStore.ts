@@ -1,6 +1,6 @@
 import { updateProfile, User } from "firebase/auth";
 import { makeAutoObservable, runInAction } from "mobx";
-import { addUserWellbeing } from "./api/queries";
+import { addContactRequest, addUserWellbeing } from "./api/queries";
 
 export interface Wellbeing {
     date: string;
@@ -60,6 +60,10 @@ export class AppStore {
                 this.wellbeing = [...this.wellbeing, todayWellbeing];
             }
         })
+    }
+
+    public sendContactRequest = async (text: string) => {
+        await addContactRequest(appStore.user!.uid, appStore.user!.email, text);
     }
 }
 

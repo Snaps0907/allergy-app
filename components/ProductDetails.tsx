@@ -7,11 +7,25 @@ import { appStore } from "../AppStore";
 import HighlightIngredients from "./HighlightIngredients";
 
 export default observer(({ data }: { data: Product }) => {
+    const checkIfContainsExcludedAllergens = () => {
+        const ingredients = data.ingredients_text?.replace(/_/gi, "");
+
+        if (!ingredients) return false;
+
+        for (const allergen of appStore.allergies) {
+            if (ingredients.includes(allergen.toLocaleLowerCase())) return true;
+        }
+
+        return false;
+    }
+
+    const hasExcludedAllergens = checkIfContainsExcludedAllergens();
 
     return (
         <View style={styles.container}>
             {data.image_url ? <View style={styles.imageWrapper}>
-                <Image source={{ uri: data.image_url }} style={styles.image} />
+                {hasExcludedAllergens ? <Text style={styles.warning}>!</Text> : null}
+                <Image source={{ uri: data.image_url }} style={hasExcludedAllergens ? styles.imageWarning : styles.image} />
             </View> : null}
 
             <View style={styles.detailsWrapper}>
@@ -24,11 +38,11 @@ export default observer(({ data }: { data: Product }) => {
                 </View> : null}
 
                 {data.ingredients_text ? <View style={{ ...styles.infoLine, ...styles.twoLines }}>
-                    <Text style={styles.bold}>Ingredients: <HighlightIngredients ingredients={data.ingredients_text.replace(/_/gi, "")} highlightWords={appStore.allergies} /></Text>   
+                    <Text style={styles.bold}>Ingredients: <HighlightIngredients ingredients={data.ingredients_text.replace(/_/gi, "")} highlightWords={appStore.allergies} /></Text>
                 </View> : null}
 
                 {!data.ingredients_text ? <View style={{ ...styles.infoLine, ...styles.twoLines }}>
-                    <Text style={styles.bold}>Ingredients: <Text>Missing ingredients data</Text></Text>   
+                    <Text style={styles.bold}>Ingredients: <Text>Missing ingredients data</Text></Text>
                 </View> : null}
             </View>
         </View>
@@ -37,15 +51,39 @@ export default observer(({ data }: { data: Product }) => {
 
 const styles = StyleSheet.create({
     container: {
-        paddingHorizontal: 12
+        paddingHorizontal: 12,
+        width: "100%",
+        alignItems: "center"
+    },
+    warning: {
+        width: 24,
+        height: 24,
+        backgroundColor: "red",
+        color: "white",
+        borderRadius: 12,
+        textAlign: "center",
+        fontSize: 20,
+        position: "absolute",
+        right: -12,
+        top: -12,
+        zIndex: 100
     },
     imageWrapper: {
         alignItems: 'center',
-        marginVertical: 24
+        marginVertical: 24,
+        width: "50%",
+        position: "relative",
+        backgroundColor: "blue"
     },
     image: {
-        width: "50%",
+        width: "100%",
         aspectRatio: 1
+    },
+    imageWarning: {
+        width: "100%",
+        aspectRatio: 1,
+        borderWidth: 5,
+        borderColor: "red"
     },
     detailsWrapper: {
         paddingBottom: 24,
@@ -53,7 +91,7 @@ const styles = StyleSheet.create({
     infoLine: {
         flexDirection: "row",
         marginVertical: 2,
-        flexWrap:"nowrap"
+        flexWrap: "nowrap"
     },
     twoLines: {
         flexDirection: "column"

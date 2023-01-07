@@ -6,6 +6,7 @@ import { ScrollView } from "react-native";
 import AllergiesManagement from "../../components/AllergiesManagement";
 import EditUserName from "../../components/EditUserName";
 import { LinearGradient } from 'expo-linear-gradient';
+import { ContactRequest } from "../../components/ContactRequest";
 
 export default observer(({ navigation }: { navigation: any }) => {
     const logout = () => {
@@ -18,7 +19,8 @@ export default observer(({ navigation }: { navigation: any }) => {
         <ScrollView>
             <EditUserName />
             <AllergiesManagement />
-            <LinearGradient colors={['#27AE60', '#85D454']} style={{alignSelf:"center",borderRadius:10, width:180}}><Button color="transparent" onPress={logout} title="logout" /></LinearGradient>
+            <ContactRequest />
+            <LinearGradient colors={['#27AE60', '#85D454']} style={{ alignSelf: "center", borderRadius: 10, width: 180 }}><Button color="transparent" onPress={logout} title="logout" /></LinearGradient>
         </ScrollView>
     );
 });
